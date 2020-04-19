@@ -69,8 +69,6 @@ twitter = Twitter(auth=OAuth(resource_owner_key,
                   consumer_key,
                   consumer_secret))
 
-# send request to retrieve tweets. count denotes the number of tweets to retrieve, exclude replies remove reply tweets
-results = twitter.statuses.user_timeline(screen_name=twitter_handle, count=200, exclude_replies=True, tweet_mode="extended")
 
 #
 # Function to save tweets in the correct format to the CSV file
