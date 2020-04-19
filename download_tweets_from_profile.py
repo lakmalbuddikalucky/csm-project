@@ -82,8 +82,8 @@ def save_tweets_for_results(results, party, type):
 
     # column names for the dataframe
     columns = ["TEXT", "RETWEET_COUNT", "FAVORITE_COUNT", "TWEET_ID", "TWEET_BY",
-               "TWEET_BY_ID", "DATETIME", "NUM_OF_URLS", "RETWEETED", "REWTWEETED_TWEET_ID",
-               "REWTWEETED_TWEET_BY", "REWTWEETED_TWEET_BY_ID", "RETWEETED_TEXT",
+               "TWEET_BY_ID", "DATETIME", "NUM_OF_URLS", "RETWEETED", "RETWEETED_TWEET_ID",
+               "RETWEETED_TWEET_BY", "RETWEETED_TWEET_BY_ID", "RETWEETED_TEXT",
                "RETWEETED_URLS","RETWEETED_MEDIA", "PARTY", "TYPE"]
 
     # directory to write the file to
@@ -122,25 +122,25 @@ def save_tweets_for_results(results, party, type):
                 retweeted_user = content["user"]
                 rt_entities = flatten_json(content["entities"])
                 RETWEETED = True
-                REWTWEETED_TWEET_ID = "#" + str(content["id_str"])
-                REWTWEETED_TWEET_BY = retweeted_user["screen_name"]
-                REWTWEETED_TWEET_BY_ID = "#" + str(retweeted_user["id_str"])
+                RETWEETED_TWEET_ID = "#" + str(content["id_str"])
+                RETWEETED_TWEET_BY = retweeted_user["screen_name"]
+                RETWEETED_TWEET_BY_ID = "#" + str(retweeted_user["id_str"])
                 RETWEETED_TEXT = content["full_text"]
                 RETWEETED_URLS = len(rt_entities["urls"])
                 RETWEETED_MEDIA = len(rt_entities["media"])
             except:
                 RETWEETED = False
-                REWTWEETEDx_TWEET_ID = None
-                REWTWEETED_TWEET_BY = None
-                REWTWEETED_TWEET_BY_ID = None
+                RETWEETED_TWEET_ID = None
+                RETWEETED_TWEET_BY = None
+                RETWEETED_TWEET_BY_ID = None
                 RETWEETED_TEXT = None
                 RETWEETED_URLS = None
                 RETWEETED_MEDIA = None
 
             # append data to be saved in the CSV
             rows_list.append([TEXT,RETWEET_COUNT,FAVORITE_COUNT,TWEET_ID,TWEET_BY,TWEET_BY_ID,
-                                   DATETIME,NUM_OF_URLS,RETWEETED,REWTWEETED_TWEET_ID,
-                                   REWTWEETED_TWEET_BY,REWTWEETED_TWEET_BY_ID,RETWEETED_TEXT,
+                                   DATETIME,NUM_OF_URLS,RETWEETED,RETWEETED_TWEET_ID,
+                                   RETWEETED_TWEET_BY,RETWEETED_TWEET_BY_ID,RETWEETED_TEXT,
                                     RETWEETED_URLS, RETWEETED_MEDIA, PARTY, TYPE])
 
     # create a dataframe with collected data and rename columns
